@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>不得不说的eval方法 | Leron Learn Blog</title>
+  <meta name="author" content="Leron">
+  
+  <meta name="description" content="Show me the trueth">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="不得不说的eval方法"/>
+  <meta property="og:site_name" content="Leron Learn Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leron Learn Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-35193226-1', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Leron Learn Blog</a></h1>
+  <h2><a href="/">Keep it simple and happy</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-11-14T13:01:00.000Z"><a href="/2013/11/14/不得不说的eval方法/">Nov 14 2013</a></time>
+      
+      
+  
+    <h1 class="title">不得不说的eval方法</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天在处理数据的时候碰到这样一个问题，接口过来的数据是一个数字字符串(是数字但是类型是字符串)数组，这些字符串呢又是数字，现在想做的就是将这个数组里面的所有字符串进行相加。一开始想到的是这样做的:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str_array = [<span class="string">'12'</span>,<span class="string">'45'</span>, <span class="string">'56'</span>];</span><br><span class="line"><span class="keyword">var</span> int_array = str_array.map(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;<span class="keyword">return</span> <span class="built_in">parseInt</span>(value)&#125;); <span class="comment">//return a array [12,45, 56]</span></span><br><span class="line"><span class="keyword">var</span> total = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; int_array.length; i++) &#123;</span><br><span class="line">  total += int_array[i];</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>对一个数组进行求和一定要做for循环，作为一个ruby语言的爱好者，直觉告诉我应该还没有简单的方法呢？完全可以不用循环，可以这样：<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> total = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> str_array = [<span class="string">'12'</span>,<span class="string">'45'</span>, <span class="string">'56'</span>];</span><br><span class="line">str_array.map(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123; total += <span class="built_in">parseInt</span>(value) &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>感觉是不是要爽一些呢？但是还有没有更简洁的方式呢？当一段代码你感觉能优化时，那肯定可以优化的，看看下面这个版本:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str_array = [<span class="string">'12'</span>,<span class="string">'45'</span>, <span class="string">'56'</span>];</span><br><span class="line"><span class="keyword">var</span> total = <span class="built_in">eval</span>(str_array.join(<span class="string">'+'</span>));</span><br></pre></td></tr></table></figure></p>
+<p>是不是觉得想说，这太帅气了。</p>
+<p>eval 看上去貌似很简单的样子, 这样调用就可以了<code>eval(string)</code>, 其实它很强大的。那有为什么我们很少在开源的代码中看到它的身影，至于原因，也归功于它太强大了，强大的东西虽好，但是一般人很难驾驭的，用不好呢就会适得其反, 所以很多的文章建议不要用它, 例如这里有一篇03年的文章<a href="http://blogs.msdn.com/b/ericlippert/archive/2003/11/01/53329.aspx" target="_blank" rel="external">Eval is Evil</a>，但是大牛Payin’ Bills最近写了 写了一篇文章说<a href="http://www.nczonline.net/blog/2013/06/25/eval-isnt-evil-just-misunderstood/" target="_blank" rel="external">eval() isn’t evil, just misunderstood</a>, 说到底呢，用的好不好还是看用得人，强大的东西都建议不要用得它负责，也就做做上面这样的就差不多了^_^…</p>
+<p>###eval 详细的用法参考:<br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <!-- shuo Comment BEGIN -->
+  <div class="ds-thread" data-thread-key="post-不得不说的eval方法" data-title="不得不说的eval方法" ></div>
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"leehong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+  </script>
+  <!-- Duoshuo Comment END -->
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:blog.leehong.me">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/angular/">angular</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/html/">html</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/life/">life</a><small>1</small></li>
+  
+    <li><a href="/tags/rails/">rails</a><small>1</small></li>
+  
+    <li><a href="/tags/ruby/">ruby</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Leron
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'jslite';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
