@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Keep it simple and happy]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.leehong.me/"/>
-  <updated>2015-10-26T16:30:06.000Z</updated>
+  <updated>2017-01-06T08:55:47.000Z</updated>
   <id>http://blog.leehong.me/</id>
   
   <author>
@@ -13,6 +13,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[2016年折腾的年终总结]]></title>
+    <link href="http://blog.leehong.me/2017/01/06/2016%E5%B9%B4%E6%8A%98%E8%85%BE%E7%9A%84%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    <id>http://blog.leehong.me/2017/01/06/2016年折腾的年终总结/</id>
+    <published>2017-01-06T07:50:29.000Z</published>
+    <updated>2017-01-06T08:55:47.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="回顾">回顾</h2><p>时间节点：</p>
+<pre><code><span class="bullet">* </span>3月份 从郎玛信息离职，去一家公司在贵阳的分公司做前端开发。
+<span class="bullet">* </span>清明节 回老家拆掉老房子，重新修新房，预计年底结婚。
+<span class="bullet">* </span>6月份 又离职，和朋友一起创业，一开始做计算机视觉识别，同时接一些小项目做，也尝试做VR项目，没有什么效果。
+<span class="bullet">* </span>7月份 去厦门拍摄婚纱照，领取结婚证。
+<span class="bullet">* </span>9月份 买房，经济压力之下又跑到一个做医学教学的公司在贵阳医科大学里面做信息化。
+<span class="bullet">* </span>国庆节 回家订婚。
+<span class="bullet">* </span>12月份 又离开，来到茅台集团成立的电商公司做前端开发。
+</code></pre><h2 id="收获">收获</h2><p>2016年对于我来说是折腾和艰难的一年，一直在换工作和处理各种个人事情以及严重经济压力下度过的；不过还好，基本挺过来了，算完成了人生中2件大事：买房和结婚（还没有办酒）。 今年最大的收获应该是处理事情更加成熟了，对待人和事情的态度更加理性的分析和处理。<br><a id="more"></a></p>
+<h2 id="新年计划">新年计划</h2><pre><code>* 坚持写博客，努力做到写<span class="number">30</span>篇以上，至少每月<span class="number">1</span>篇技术方面的文章, <span class="number">5</span>篇AI方面的知识文章。
+* 带着老婆一起健身，学会游泳，能够游<span class="number">10</span>m以上；每天<span class="number">11</span>点之前睡觉，早上<span class="number">7</span>点起床。
+* 读<span class="number">40</span>本以上的书，至少<span class="number">3</span>本关于经济的、<span class="number">3</span>本关于管理的，<span class="number">1</span>个月有一篇读后感。
+* 学习一门新的语言。
+</code></pre><p>毕业之后每年心里都有给自己设目标，几乎每年都没有完成，一方面有惰性在里面，一方面是自己没有记录下来，以前一直觉得做记录是浪费时间的事情，上个月整理前几年零零散散的evernote笔记的时候，发现好多东西都忘记了，体会到记录是很重要的。</p>
+<p>最后希望家人都身体健健康康，工作顺顺利利。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="回顾">回顾</h2><p>时间节点：</p>
+<pre><code><span class="bullet">* </span>3月份 从郎玛信息离职，去一家公司在贵阳的分公司做前端开发。
+<span class="bullet">* </span>清明节 回老家拆掉老房子，重新修新房，预计年底结婚。
+<span class="bullet">* </span>6月份 又离职，和朋友一起创业，一开始做计算机视觉识别，同时接一些小项目做，也尝试做VR项目，没有什么效果。
+<span class="bullet">* </span>7月份 去厦门拍摄婚纱照，领取结婚证。
+<span class="bullet">* </span>9月份 买房，经济压力之下又跑到一个做医学教学的公司在贵阳医科大学里面做信息化。
+<span class="bullet">* </span>国庆节 回家订婚。
+<span class="bullet">* </span>12月份 又离开，来到茅台集团成立的电商公司做前端开发。
+</code></pre><h2 id="收获">收获</h2><p>2016年对于我来说是折腾和艰难的一年，一直在换工作和处理各种个人事情以及严重经济压力下度过的；不过还好，基本挺过来了，算完成了人生中2件大事：买房和结婚（还没有办酒）。 今年最大的收获应该是处理事情更加成熟了，对待人和事情的态度更加理性的分析和处理。<br>]]>
+    
+    </summary>
+    
+      <category term="年终总结" scheme="http://blog.leehong.me/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[全新生活]]></title>
