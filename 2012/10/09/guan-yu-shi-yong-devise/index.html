@@ -77,20 +77,20 @@
       
         <p><a href="https://github.com/plataformatec/devise" target="_blank" rel="external">devise</a>是rails的一个gem,rails 的gem的好处就是各种便利,即使你不知道它的内在原理,你也可以很好的使用,只要你按照doc操作.关于devise的好处就不用说了,使用它之后不用不用在关心帐号的各种处理了,只要你按照它的步骤操作,一分钟就搞定了,给我们带来了很大的便利.</p>
 <p>怎么使用devise就不详细说了,官方和现在的资料已经很仔细了,我要说的是这个方法<code>after_sign_up_path_for</code> ,这个方法里面你对制定的帐号登陆之后跳转的到指定的path,例如:</p>
-<pre><code><span class="keyword">private</span>
-<span class="function"><span class="keyword">def</span> <span class="title">after_sign_in_path_for</span></span>(resource)
+<pre><code>private
+def after_sign_in_path_for(resource)
   这里进行处理
-  <span class="keyword">if</span> resource.<span class="keyword">is_a?</span>(<span class="constant">User</span>)
+  if resource.is_a?(User)
     这里指定的path
-  <span class="keyword">else</span>
-    <span class="keyword">super</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+  else
+    super
+  end
+end
 </code></pre><p>对应的登出也有这样的一个方法</p>
-<pre><code><span class="keyword">private</span>
-<span class="function"><span class="keyword">def</span> <span class="title">after_sign_out_path_for</span></span>(resource_or_scope)
+<pre><code>private
+def after_sign_out_path_for(resource_or_scope)
     这里一般是跳到首页了
-<span class="keyword">end</span>
+end
 </code></pre>
       
     </div>
@@ -162,8 +162,6 @@
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
-  
-    <li><a href="/tags/2016-年终总结/">2016 年终总结</a><small>0</small></li>
   
     <li><a href="/tags/angular/">angular</a><small>1</small></li>
   

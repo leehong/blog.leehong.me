@@ -75,7 +75,7 @@
     </header>
     <div class="entry">
       
-        <p>##问题<br>早上碰到的关于button tag问题，准确说应该是敲代码时没有注意，遗漏了button type 的attribute赋值。问题是这样的，就是button 效果在chrome下是不正常的，第一次刷新了整个页面，而我绑定的事件处理只是页面的一部分，但是第二次就是正常了，我换firefox是没有问题的？一开始猜测难道在绑定事件涉及到了浏览器兼容问题？就在chrome下debug，发现第一次在jQuery 事件进到这个if语句:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( !(eventHandle = elemData.handle) ) &#123;</span><br><span class="line">  eventHandle = elemData.handle = <span class="function"><span class="keyword">function</span>(<span class="params"> e </span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Discard the second event of a jQuery.event.trigger() and</span></span><br><span class="line">    <span class="comment">// when an event is called after a page has unloaded</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> jQuery !== core_strundefined &amp;&amp; (!e || jQuery.event.triggered !== e.type) ?</span><br><span class="line">    jQuery.event.dispatch.apply( eventHandle.elem, <span class="built_in">arguments</span> ) :</span><br><span class="line">    <span class="literal">undefined</span>;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure></p>
+        <p>##问题<br>早上碰到的关于button tag问题，准确说应该是敲代码时没有注意，遗漏了button type 的attribute赋值。问题是这样的，就是button 效果在chrome下是不正常的，第一次刷新了整个页面，而我绑定的事件处理只是页面的一部分，但是第二次就是正常了，我换firefox是没有问题的？一开始猜测难道在绑定事件涉及到了浏览器兼容问题？就在chrome下debug，发现第一次在jQuery 事件进到这个if语句:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ( !(eventHandle = elemData.handle) ) &#123;</div><div class="line">  eventHandle = elemData.handle = <span class="function"><span class="keyword">function</span>(<span class="params"> e </span>) </span>&#123;</div><div class="line">    <span class="comment">// Discard the second event of a jQuery.event.trigger() and</span></div><div class="line">    <span class="comment">// when an event is called after a page has unloaded</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> jQuery !== core_strundefined &amp;&amp; (!e || jQuery.event.triggered !== e.type) ?</div><div class="line">    jQuery.event.dispatch.apply( eventHandle.elem, <span class="built_in">arguments</span> ) :</div><div class="line">    <span class="literal">undefined</span>;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>第二次没有，那就是第一次eventHandle和当前dom的handle不一致出现的，为什么会不一致呢？返回去看到button 这个tag 没有加上type属性，难道是这个问题？加上果然就好了。虽然不是什么大问题，心理总有点什么，没有安全感，顺便就去看看button的tag的文档，主要是它得type属性。</p>
 <p>##Button type<br>Button 这个标签重点应该是在type这个属性上，type有3个值:</p>
@@ -157,8 +157,6 @@
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
-  
-    <li><a href="/tags/2016-年终总结/">2016 年终总结</a><small>0</small></li>
   
     <li><a href="/tags/angular/">angular</a><small>1</small></li>
   
